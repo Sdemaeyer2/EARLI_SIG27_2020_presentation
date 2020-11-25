@@ -282,24 +282,46 @@ $\rightarrow$ **.pink[Model 3] fits best **
 
 ### Posterior distribution of .pink[fixed effects]
 
-```{r, warning = F, message = F, error = F, echo = FALSE, cache = T}
+.left-column[
+</br>
+_average duration of visits coming from ... _
+- 'scanning' +/- .44 secs
+
+- 'text comprehension' +/- 8.10 secs
+]
+.right-column[
+  .right[
+```{r, warning = F, message = F, error = F, echo = FALSE, cache = T, fig.height=6.5, fig.width=6.5}
+color_scheme_set("blue")
 mcmc_areas(M3,
            pars = c("b_mu1_Intercept", "b_mu2_Intercept"),
            prob = 0.80,
            point_est = "median") + 
   ggplot2::labs(title="Fixed effects (Model 3; Gaze durations in log-miliseconds)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
+  theme_grey()+ 
   scale_y_discrete(labels=c("Intercept 1 (Scanning)",
                             "Intercept 2 (Text Comprehension)")) +
   annotate("text", label = "0.44 secs", x = 6.09, y = 0.9) +
   annotate("text", label = "8.10 secs", x = 9.00, y = 1.9)
 ```
+    ]
+]
+
+
 
 ---
 
 ### Posterior distribution of .pink[theta & residual variances]
+.left-column[
+</br>
+- more visits from 'scanning' than 'text comprehension'
 
-```{r, warning = F, message = F, error = F, echo = FALSE, cache = T}
+- residual variance larger for 'text comprehension'
+]
+.right-column[
+  .right[
+```{r, warning = F, message = F, error = F, echo = FALSE, cache = T, fig.height=6.5, fig.width=6.5}
 mcmc_areas(M3,
            pars = c("sigma1", 
                     "sigma2" ,
@@ -309,17 +331,25 @@ mcmc_areas(M3,
            point_est = "median") + 
   ggplot2::labs(title="Residual variances and proportions (Model 3)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
+  theme_grey() +
   scale_y_discrete(labels=c("residual var 'Scanning'",
                             "residual var 'Compreh.'",
                             "proportion 'Scanning'",
                             "proportion 'Compreh.'"))  
 ```
-
+]]
 ---
 
 ### Posterior distribution of .pink[random effects]
+.left-column[
+</br>
+- judges stronger impact on both types of durations
 
-```{r, warning = F, message = F, error = F, echo = FALSE, cache = T}
+- biggest differences for durations form 'text comprehension'
+]
+.right-column[
+  .right[
+```{r, warning = F, message = F, error = F, echo = FALSE, cache = T, fig.height=6.5, fig.width=6.5}
 mcmc_areas(M3,
            pars = c("sd_MediaName__mu1_Intercept", 
                     "sd_MediaName__mu2_Intercept" ,
@@ -329,55 +359,66 @@ mcmc_areas(M3,
            point_est = "median") + 
   ggplot2::labs(title="Random effects (Model 3)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
+  theme_grey() +
   scale_y_discrete(labels=c("sd intercept1 / comparison",
                             "sd intercept2 / comparison",
                             "sd intercept1 / judges",
                             "sd intercept2 / judges"))
 ```
-
+]]
 ---
 
 ### Diff. between judges in reading for text comprehension
-
-```{r, warning = F, message = F, error = F, echo = FALSE, cache = T}
+.left-column[
+</br>
+_This plot shows how .pink[judges] differ in durations coming form 'text comprehension'_
+]
+.right-column[
+  .right[
+```{r, warning = F, message = F, error = F, echo = FALSE, cache = T, fig.height=6.5, fig.width=6.5}
 Twentysix_numbers <- seq(1:26)
 Twentysix_recs <- rep("Rec.",26)
 Labels_rec <- paste(Twentysix_recs, Twentysix_numbers, sep = "")
-
-color_scheme_set("green")
 
 mcmc_areas(M3,
            regex_pars = "r_Participant_Recording_FACT__mu2",
            prob = 0.80,
            point_est = "median",
            area_method = "scaled height") + 
+  theme_grey() +
   ggplot2::labs(title="Random effects of judges for intercept 2 (Model 3)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
   scale_y_discrete(labels = Labels_rec)
 ```
-
+]]
 ---
 
 ### Diff. between comparisons in reading for text comprehension
+.left-column[
+</br>
+_This plot shows how .pink[comparisons] result in different durations for 'text comprehension'_
 
-```{r, warning = F, message = F, error = F, echo = FALSE, cache = T}
+$\rightarrow$ _clearly more alike than judges_
+]
+.right-column[
+  .right[
+```{r, warning = F, message = F, error = F, echo = FALSE, cache = T, fig.height=6.5, fig.width=6.5}
 Thirty_numbers <- seq(1:30)
 Thirty_comps <- rep("Comp.",30)
 Labels_comparison <- paste(Thirty_comps,Thirty_numbers,sep = "")
-
-color_scheme_set("red")
 
 mcmc_areas(M3,
            regex_pars = "r_MediaName__mu2",
            prob = 0.80,
            point_est = "median",
            area_method = "scaled height") + 
+  theme_grey() +
   ggplot2::labs(title="Random effects of comparisons for mu2 (Model 3)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
   scale_y_discrete(labels = Labels_comparison)
 
 ```
-
+]]
 ---
 class: inverse, center, bottom
 background-image: url(felicia-buitenwerf-Qs_Zkak27Jk-unsplash.jpg)
@@ -393,6 +434,10 @@ background-size: contain
 - judges and comparisons result in different gaze event durations
 
 - mixed effects finite mixture models are promising for this kind of data
+
+  - _no need to decide which fixation duration point to scanning and which to text comprehension_
+  
+  - _opens up many possibilities for follow-up research questons and analyses_
 
 ---
 ## Discussion
