@@ -1,11 +1,12 @@
 ---
-title: "Modelling eye-tracking data in comparative judgement"
+title : "Modelling eye-tracking data in comparative judgement"
 subtitle: "⚔<br/>EARLI SIG27 - 2020"
 author: "Sven De Maeyer; Marije Lesterhuis; Marijn Gijsen"
 institute: "University of Antwerp"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
+    css: [default, default-fonts, extra.css]
     self-contained: true
     lib_dir: libs
     nature:
@@ -40,6 +41,8 @@ load(file = "data/M2a_Fit")
 load(file = "data/M2b_Fit")
 load(file = "data/M3_Fit")
 ```
+???
+These slides are made, making use of the Xaringan package in R. Great Stuff!
 
 ---
 
@@ -70,18 +73,18 @@ load(file = "data/M3_Fit")
 
 Gaze duration data might result from different cognitive processes:
 
-$\rightarrow$ shorter visits in both texts (reading for building a first 'mental model' / scanning) 
+$\rightarrow$ .pink[shorter visits] in both texts (reading for building a first 'mental model' / .pink[scanning]) 
 
-$\rightarrow$ long visit in one of both texts (reading for text comprehension)
+$\rightarrow$ .pink[longer visits] in one of both texts (reading for .pink[text comprehension])
 
 ---
 ## But...
 
 How to statistically model the resulting duration data?
 
-... without **categorisation** (setting tresholds to distinguish scanning from text comprehension)
+... .pink[without **categorisation** ](setting tresholds to distinguish scanning from text comprehension)
 
-... and avoiding **aggregation**
+... and .pink[avoiding **aggregation**]
 
 Goal of this research:
 > build and test statistical models that acknowledge the data generating cognitive processes and that do not make use of 'trimming', 'setting tresholds' or 'aggregation'
@@ -144,7 +147,7 @@ Durations_Texts %>%
 ---
 ## Statistical model 1 
 
-Simple <span style="color: rgb(249, 38, 114)">mixed effects model </span>
+Simple .pink[mixed effects model]
 
 = 'Gaze Event duration' of AOI visits are nested within the combination of juges and comparisons
 
@@ -269,7 +272,7 @@ ModelComparison %>%
 
 
 
-$\rightarrow$ **<span style="color: rgb(249, 38, 114)">Model 3</span> fits best **
+$\rightarrow$ **.pink[Model 3] fits best **
 
 - 2 data generating processes
 
@@ -277,7 +280,7 @@ $\rightarrow$ **<span style="color: rgb(249, 38, 114)">Model 3</span> fits best 
 
 ---
 
-### Posterior distribution of fixed effects
+### Posterior distribution of .pink[fixed effects]
 
 ```{r, warning = F, message = F, error = F, echo = FALSE, cache = T}
 mcmc_areas(M3,
@@ -294,7 +297,7 @@ mcmc_areas(M3,
 
 ---
 
-### Posterior distribution of theta & residual variances
+### Posterior distribution of .pink[theta & residual variances]
 
 ```{r, warning = F, message = F, error = F, echo = FALSE, cache = T}
 mcmc_areas(M3,
@@ -314,7 +317,7 @@ mcmc_areas(M3,
 
 ---
 
-### Posterior distribution of random effects
+### Posterior distribution of .pink[random effects]
 
 ```{r, warning = F, message = F, error = F, echo = FALSE, cache = T}
 mcmc_areas(M3,
@@ -398,11 +401,11 @@ background-size: contain
 
 - more informed priors
 
-- a need for <span style="color: rgb(249, 38, 114)"> triangulation </span> to understand the two types of processes
+- a need for .pink[triangulation] to understand the two types of processes
 
-- what if representations are not texts; how <span style="color: rgb(249, 38, 114)"> task specific </span> are these models?
+- what if representations are not texts; how .pink[task specific] are these models?
 
-- other applications of <span style="color: rgb(249, 38, 114)"> finite mixture models </span> when modelling process data?
+- other applications of .pink[(mixed effecdts) finite mixture models] when modelling process data?
 
 ---
 class: inverse, center, bottom
@@ -417,4 +420,4 @@ Do not hesitate to contact us!
 sven.demaeyer@uantwerpen.be
 
 
-The material is shared on OSF: https://osf.io/evrsf/
+The material is shared on OSF [https://osf.io/evrsf/]
