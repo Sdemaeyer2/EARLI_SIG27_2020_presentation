@@ -22,3 +22,7 @@ shinystan
 rstantools
 sjPlot
 sjstats
+sysfonts
+showtextdb
+showtext
+xaringanthemer

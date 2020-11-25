@@ -13,12 +13,17 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
 name: introduction
 class: center,inverse, bottom
 background-image: url(sharon-mccutcheon-NeRKgBUUDjM-unsplash.jpg)
 background-size: contain
 
 # Introduction
+
 
 ```{r ,warning=F,message=F,echo=F}
 library(dplyr)
@@ -34,11 +39,6 @@ load(file = "data/M1_Fit")
 load(file = "data/M2a_Fit")
 load(file = "data/M2b_Fit")
 load(file = "data/M3_Fit")
-#load("~/Praatjes/Congressen/EARLI SIG 27 - 2020/M1_Fit")
-#load("~/Praatjes/Congressen/EARLI SIG 27 - 2020/M2a_Fit")
-#load("~/Praatjes/Congressen/EARLI SIG 27 - 2020/M2b_Fit")
-#load("~/Praatjes/Congressen/EARLI SIG 27 - 2020/M3_Fit")
-
 ```
 
 ---
@@ -97,9 +97,13 @@ background-size: contain
 ## Procedure
 
 - 26 high school teachers (Dutch) voluntary participated
+
 - each did 10 comparisons of 2 argumentative texts from 10th graders
+
 - 3 sets of comparisons with random allocation of judges to one of the sets
+
 - Tobii TX300 dark pupil eye-tracker with a 23-inch TFT monitor (max. resolution of 1920 x 1080 pixels)
+
 - data sampled binocularly at 300 Hz 
 
 ---
@@ -185,7 +189,7 @@ Model 1 **+ assuming two data generating processes + gaze event durations from '
 
 $$
 \begin{aligned}
-y_{i(jk)} = & \theta     \times (\beta_{1} + \nu_{1j} + \eta_{1k} + \epsilon_{1i(jk)}) + \\
+y_{i(jk)} = & \theta     \times (\beta_{1} + \mu_{1j} + \nu_{1k} + \epsilon_{1i(jk)}) + \\
             & (1-\theta) \times (\beta_{2} + \epsilon_{2i(jk)})
 \end{aligned}
 $$
@@ -208,8 +212,8 @@ Model 1 + two data generating processes + **gaze event durations from both proce
 
 $$
 \begin{aligned}
-y_{i(jk)}= & \theta     \times (\beta_{1} + \nu_{1j} + \eta_{1k} + \epsilon_{1i(jk)}) + \\
-           & (1-\theta) \times (\beta_{2} + \nu_{2j} + \eta_{2k} + \epsilon_{2i(jk)})
+y_{i(jk)}= & \theta     \times (\beta_{1} + \mu_{1j} + \nu_{1k} + \epsilon_{1i(jk)}) + \\
+           & (1-\theta) \times (\beta_{2} + \mu_{2j} + \nu_{2k} + \epsilon_{2i(jk)})
 \end{aligned}
 $$
 
@@ -218,7 +222,7 @@ With:
 - $\beta_1$ = intercept 1, overall average duration process 1 $\rightarrow$ 'scanning';
 - $\beta_2$ = intercept 2, overall average duration process 2 $\rightarrow$ 'text comprehension reading';
 - $\mu_{1j}$ & $\mu_{2j}$ = unique effect of judge $j$ on 'scanning' & 'text comprehension reading';
-- $\nu_{1k}$ & $\nu_{1k}$ = unique effect of comparison $k$ on 'scanning' & 'text comprehension reading';
+- $\nu_{1k}$ & $\nu_{2k}$ = unique effect of comparison $k$ on 'scanning' & 'text comprehension reading';
 - $\epsilon_{1i(jk)}$ & $\epsilon_{2i(jk)}$ = residuals;
 - $\theta$ = mixing proportion (weight)
 
@@ -227,10 +231,14 @@ With:
 ## Analysis (Bayesian estimation)
 
 - <span style="color: rgb(249, 38, 114)"> brms </span>(wrapper around Stan) to estimate the models making use of MCMC in R
+
 - <span style="color: rgb(249, 38, 114)"> flat </span>(uninformed) priors
+
 - <span style="color: rgb(249, 38, 114)"> 4 chains </span> of <span style="color: rgb(249, 38, 114)">15000 iterations </span> (with 1000 burn-in it.)
-- compare the models
-- summarize best model
+
+- compare the models with 'leave-one-out cross-validation' approach
+
+- summarize best model (interpret the posterior distribution)
 
 ---
 class: inverse, center
@@ -264,6 +272,7 @@ ModelComparison %>%
 $\rightarrow$ **<span style="color: rgb(249, 38, 114)">Model 3</span> fits best **
 
 - 2 data generating processes
+
 - differences between judges AND comparisons
 
 ---
@@ -389,9 +398,9 @@ background-size: contain
 
 - more informed priors
 
-- a need for triangulation to understand the two types of processes
+- a need for <span style="color: rgb(249, 38, 114)"> triangulation </span> to understand the two types of processes
 
-- what if representations are not texts; how task specific are these models?
+- what if representations are not texts; how <span style="color: rgb(249, 38, 114)"> task specific </span> are these models?
 
 - other applications of <span style="color: rgb(249, 38, 114)"> finite mixture models </span> when modelling process data?
 
@@ -408,4 +417,4 @@ Do not hesitate to contact us!
 sven.demaeyer@uantwerpen.be
 
 
-The material is shared on OSF: url(https://osf.io/evrsf/)
+The material is shared on OSF: https://osf.io/evrsf/
