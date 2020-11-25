@@ -103,7 +103,9 @@ background-size: contain
 
 - each did 10 comparisons of 2 argumentative texts from 10th graders
 
-- 3 sets of comparisons with random allocation of judges to one of the sets
+- 3 batches of comparisons with random allocation of judges to one of the batches
+
+- all batches similar composition of comparisons regarding the characteristics of the pairs; the pairs, however not the same
 
 - Tobii TX300 dark pupil eye-tracker with a 23-inch TFT monitor (max. resolution of 1920 x 1080 pixels)
 
@@ -163,7 +165,7 @@ with:
 
 ---
 
-## Statistical model 2: 
+## Statistical model 2
 
 first mixed effects <span style="color: rgb(249, 38, 114)">finite mixture </span> model
 
@@ -254,7 +256,7 @@ background-size: contain
 ## Comparison of the models
 
 ```{r, echo = F}
-Modelname <- c("Model 3","Model 2a","Model 2b","Model 1")
+Modelname <- c("Model 4","Model 2","Model 3","Model 1")
 Elpd_diff <- c("0.0 (0.0)", "-56.4 (10.3)", "-121.4 (20.1)", "-239.7 (19.6)")
 Elpd_loo <- c("-5548.8 (29.5)", "-5604.8 (29.3)", "-5669.9 (28.4)", "-5788.1 (30.5)")
 
@@ -272,7 +274,7 @@ ModelComparison %>%
 
 
 
-$\rightarrow$ **.pink[Model 3] fits best **
+$\rightarrow$ **.pink[Model 4] fits best **
 
 - 2 data generating processes
 
@@ -297,7 +299,7 @@ mcmc_areas(M3,
            pars = c("b_mu1_Intercept", "b_mu2_Intercept"),
            prob = 0.80,
            point_est = "median") + 
-  ggplot2::labs(title="Fixed effects (Model 3; Gaze durations in log-miliseconds)", 
+  ggplot2::labs(title="Fixed effects (Model 4; Gaze durations in log-miliseconds)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
   theme_grey()+ 
   scale_y_discrete(labels=c("Intercept 1 (Scanning)",
@@ -329,7 +331,7 @@ mcmc_areas(M3,
                     "theta2"),
            prob = 0.80,
            point_est = "median") + 
-  ggplot2::labs(title="Residual variances and proportions (Model 3)", 
+  ggplot2::labs(title="Residual variances and proportions (Model 4)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
   theme_grey() +
   scale_y_discrete(labels=c("residual var 'Scanning'",
@@ -357,7 +359,7 @@ mcmc_areas(M3,
                     "sd_Participant_Recording_FACT__mu2_Intercept"),
            prob = 0.80,
            point_est = "median") + 
-  ggplot2::labs(title="Random effects (Model 3)", 
+  ggplot2::labs(title="Random effects (Model 4)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
   theme_grey() +
   scale_y_discrete(labels=c("sd intercept1 / comparison",
@@ -386,7 +388,7 @@ mcmc_areas(M3,
            point_est = "median",
            area_method = "scaled height") + 
   theme_grey() +
-  ggplot2::labs(title="Random effects of judges for intercept 2 (Model 3)", 
+  ggplot2::labs(title="Random effects of judges for intercept 2 (Model 4)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
   scale_y_discrete(labels = Labels_rec)
 ```
@@ -413,7 +415,7 @@ mcmc_areas(M3,
            point_est = "median",
            area_method = "scaled height") + 
   theme_grey() +
-  ggplot2::labs(title="Random effects of comparisons for mu2 (Model 3)", 
+  ggplot2::labs(title="Random effects of comparisons for mu2 (Model 4)", 
                 subtitle ="Posterior distributions with medians and 80% intervals") +
   scale_y_discrete(labels = Labels_comparison)
 
@@ -437,7 +439,7 @@ background-size: contain
 
   - _no need to decide which fixation duration point to scanning and which to text comprehension_
   
-  - _opens up many possibilities for follow-up research questons and analyses_
+  - _opens up many possibilities for follow-up research questions and analyses_
 
 ---
 ## Discussion
@@ -450,7 +452,7 @@ background-size: contain
 
 - what if representations are not texts; how .pink[task specific] are these models?
 
-- other applications of .pink[(mixed effecdts) finite mixture models] when modelling process data?
+- other applications of .pink[(mixed effects) finite mixture models] when modelling process data?
 
 ---
 class: inverse, center, bottom
